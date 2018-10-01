@@ -22,7 +22,15 @@ let myParser = p.createLanguage ({
 console.log (myParser.week.parse (testStrings.week))
 console.log (myParser.month.parse (testStrings.month))
 console.log (myParser.all.parse (testStrings.all))
+// { status: true, value: [ '2018', 'W', '39' ] }
+// { status: true, value: [ '2018', 'M', '09' ] }
+// { status: true, value: 'All' }
+
 console.log ('\n')
+
 console.log (myParser.whichOne.parse(testStrings.week))
 console.log (myParser.whichOne.parse(testStrings.month))
 console.log (myParser.whichOne.parse(testStrings.all))
+// { status: true, value: [ '2018', 'W', '39' ] }
+// { status: true, value: [ '2018', 'M', '09' ] }
+// { status: true, value: 'All' }
