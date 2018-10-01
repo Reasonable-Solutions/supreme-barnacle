@@ -7,15 +7,22 @@ let testStrings = {
     all: 'All'
 }
 
+let weekParser = r => p.seq(p.digits, p.string("W"), p.digits)
+
+let monthParser = r => p.seq(p.digits, p.string ("M"), p.digits)
+let allParser = r => p.string("All")
 
 let myParser = p.createLanguage ({
-    week: r => p.seq(p.digits,
-                     p.string("W"),
-                     p.digits),
-    month: r => p.seq(p.digits, p.string ("M"), p.digits),
-    all: r => p.string("All")
+    week: weekParser,
+    month: monthParser,
+    all: allParser,
+    whichOne: r => p.alt (weekParser (), monthParser (), allParser ())
 });
 
 console.log (myParser.week.parse (testStrings.week))
 console.log (myParser.month.parse (testStrings.month))
 console.log (myParser.all.parse (testStrings.all))
+console.log ('\n')
+console.log (myParser.whichOne.parse(testStrings.week))
+console.log (myParser.whichOne.parse(testStrings.month))
+console.log (myParser.whichOne.parse(testStrings.all))
